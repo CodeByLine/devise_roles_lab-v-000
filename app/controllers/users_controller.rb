@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
-  before_action :authenticate_user!, except: [:create, :new]
-  before_action :set_user, except: [:create, :index, :new]
-  before_action :admin_only, only: :destroy
+  # before_action :authenticate_user!, except: [:create, :new]
+  # before_action :set_user, except: [:create, :index, :new]
+  # before_action :admin_only, only: :destroy
 
   def index
     @users = User.all
@@ -35,8 +35,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    redirect_to users_path, :notice => "User has been deleted."
+    if current_user.try(:admin?)
+      user.destroy
+      redirect_to root_path
+    else
+      render 'index'
+    end
+     # @user.destroy
+     # redirect_to users_path, :notice => "User has been deleted."
   end
 
 
