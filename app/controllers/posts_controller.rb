@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:edit, :update]
 
   def index
-    @posts = Posts.all
+    @posts = Post.all
   end
 
   def new
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    end
+  end
 
     def update
 
