@@ -1,7 +1,5 @@
-require 'rails_helper'
-
-describe Post do
-  it 'belongs to a user' do
-    expect(Post.new).to respond_to(:user)
-  end
-end
+# require 'rails_helper'
+#
+# RSpec.describe Post, type: :model do
+#   pending "add some examples to (or delete) #{__FILE__}"
+# end

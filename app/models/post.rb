@@ -1,15 +1,7 @@
-class User < ActiveRecord::Base
-  has_many :posts
+class Post < ActiveRecord::Base
+  belongs_to :user
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  enum role: [:user, :vip, :admin]
-  after_initialize :set_default_user_role
-
-  private
-
-  def set_default_user_role
-    self.role ||= :user
-  end
 end
