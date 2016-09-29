@@ -3,21 +3,40 @@ class PostsController < ApplicationController
   before_action :find_user
   before_action :find_post, only: [:edit, :update]
 
-  def show
+  def index
+    @posts = Posts.all
   end
 
-  def edit
+  def new
   end
 
   def create
-    Posts.create(content: params[:post][:content], user_id: @user.id)
-    redirect_to user_path(id: @user.id)
+    user_id = current_user.id
+
+    Post.create(
+      content: params[:post][:content],
+      user_id: user_id
+    )
+
+    redirect_to user_path(id: user_id)
   end
 
-  def update
-    @post.update!(content: params[:post][:content])
-    redirect_to
-  end
+  def edit
+    end
+
+    def update
+
+      @post = Post.find(params[:id])
+       if current_user.admin? || current_user.vip?
+         @post.update_attributes(post_params)
+         redirect_to posts_path
+       else
+         return head(:forbidden) unless @post.user_id == current_user.id
+         @post.update_attributes(post_params)
+         redirect_to posts_path
+       end
+     end
+
 
   private
 
