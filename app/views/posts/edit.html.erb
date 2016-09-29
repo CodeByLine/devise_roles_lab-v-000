@@ -1,7 +1,8 @@
 <h1>Edit post</h1>
 
-<%= form_for(@post) do |f| %>
+<%= form_for(:id) do |f| %>
   Content: <%= f.text_field :content %>
-  <br />
   <%= f.submit %>
 <% end %>
+
+<h3><%= link_to "Back to All Posts", posts_path %> </h3>

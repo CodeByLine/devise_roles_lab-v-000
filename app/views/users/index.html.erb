@@ -1,5 +1,9 @@
 <h1>Welcome - All Users</h1>
+
 <% @users.each do |user| %>
     <p><%= user.email %></p>
 <% end %>
+
+    <!-- <p><%= @user %></p> -->
+
 <%= link_to "Post", posts_path %>

@@ -57,4 +57,8 @@ private
     end
   end
 
+  def user_params
+    params.require(:user).permit(:name, :id, :role, :set_default_role)
+  end
+
 end
